@@ -27,23 +27,20 @@ jobs:
   plan:
   - get: instance-variables
   - get: release-branches
+  - load_var: environments
+    file: environment-variables/continuous.json
+  - task: render-pipeline
+    file: environment-variables/tasks/render-pipeline.yaml
+    params:
+      environments: ((.:environments))
   - load_var: branches
     file: release-branches/branches.json
   - across:
     - var: branch
       values: ((.:branches))
     set_pipeline: instance-variables-test
-    file: instance-variables/release-pipeline.yaml
+    file: pipeline/pipeline.yaml
     instance_vars:
       branch: ((.:branch.name))
     vars:
       autopromote: false
-  - across:
-    - var: branch
-      values: [develop]
-    set_pipeline: instance-variables-test
-    file: instance-variables/continuous-pipeline.yaml
-    vars:
-      autopromote: true
-    instance_vars:
-      branch: ((.:branch))

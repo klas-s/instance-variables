@@ -1,0 +1,43 @@
+---
+platform: linux
+
+image_resource:
+  type: registry-image
+  source:
+    repository: ubuntu
+    tag: focal
+
+inputs:
+- name: environment-variables
+
+outputs:
+- name: pipeline
+
+params:
+  TEMPLATE:
+  CONFIG:
+
+run:
+  path: bash
+  args:
+  - -ec
+  - |
+    apt-get update
+    apt-get install -y curl
+
+    echo $environments
+
+    exit
+
+    curl -Lo /usr/local/bin/ytt \
+      https://github.com/vmware-tanzu/carvel-ytt/releases/download/v0.41.1/ytt-linux-amd64
+    chmod +x /usr/local/bin/ytt
+
+    ytt -f $TEMPLATE -f $CONFIG > pipeline/pipeline.yaml || exit 1
+
+    echo
+    echo =================
+    echo Rendered pipeline
+    echo =================
+    echo
+    cat pipeline/pipeline.yaml
