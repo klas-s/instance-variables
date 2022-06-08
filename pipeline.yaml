@@ -9,10 +9,15 @@ jobs:
         type: registry-image
         source:
           repository: ubuntu
+      params:
+        BRANCH: ((branch))
+        ENVIRONMENT: ((environment))
+        AUTOPROMOTE: ((autopromote))
       run:
         path: sh
         args:
         - -exc
         - |
-          echo hello
+          echo This is $BRANCH on $ENVIRONMENT, and it will $AUTOPROMOTE.
+
 
