@@ -21,7 +21,6 @@ jobs:
           repository: ubuntu
       params:
         BRANCH: ((branch))
-        ENVIRONMENT: ((environment))
         AUTOPROMOTE: ((autopromote))
       run:
         path: sh
@@ -43,7 +42,6 @@ jobs:
           repository: ubuntu
       params:
         BRANCH: ((branch))
-        ENVIRONMENT: ((environment))
         AUTOPROMOTE: ((autopromote))
       run:
         path: sh

@@ -36,7 +36,6 @@ jobs:
     file: instance-variables/release-pipeline.yaml
     instance_vars:
       branch: ((.:branch.name))
-      environment: ((.:environment))
     vars:
       autopromote: false
   - across:
@@ -48,4 +47,3 @@ jobs:
       autopromote: true
     instance_vars:
       branch: ((.:branch))
-      environment: ((.:environment))
