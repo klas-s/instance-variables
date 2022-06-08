@@ -30,7 +30,7 @@ run:
     chmod +x /usr/local/bin/ytt
 
     ytt -f instance-variables/pipeline.yaml \
-      --data-value-yaml environments=$environments > pipeline/pipeline.yaml
+      --data-value-yaml environments="$environments" > pipeline/pipeline.yaml
 
     echo
     echo =================
