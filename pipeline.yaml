@@ -1,7 +1,17 @@
+resources:
+
+- name: instance-variables
+  type: git
+  icon: github
+  source:
+    uri: https://github.com/klas-s/instance-variables.git
+    trigger: ((autopromote))
+
 jobs:
 
 - name: job
   plan:
+  - get: instance-variables
   - task: task
     config:
       platform: linux
