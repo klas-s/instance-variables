@@ -8,7 +8,7 @@ image_resource:
     tag: focal
 
 inputs:
-- name: environment-variables
+- name: instance-variables
 
 outputs:
 - name: pipeline
