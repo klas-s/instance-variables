@@ -39,6 +39,7 @@ jobs:
     instance_vars:
       branch: ((.:branch.name))
       environment: ((.:environment))
+  - across:
     - var: branch
       values: ((.:branches))
     - var: environment
