@@ -25,11 +25,8 @@ jobs:
 
 - name: set-self
   plan:
-  - get: proceedo-web-ui-branches
-  - get: concourse-tasks
-    trigger: true
-    passed:
-    - configure-self
+  - get: instance-variables
+  - get: release-branches
   - load_var: branches
     file: release-branches/branches.json
   - across:
