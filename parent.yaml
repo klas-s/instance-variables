@@ -32,8 +32,6 @@ jobs:
   - across:
     - var: branch
       values: ((.:branches))
-    - var: environment
-      values: [delta, quality, production]
     set_pipeline: instance-variables-test
     file: instance-variables/release-pipeline.yaml
     instance_vars:
@@ -44,8 +42,6 @@ jobs:
   - across:
     - var: branch
       values: [develop]
-    - var: environment
-      values: [alfa]
     set_pipeline: instance-variables-test
     file: instance-variables/continuous-pipeline.yaml
     vars:
