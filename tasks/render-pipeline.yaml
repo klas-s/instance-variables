@@ -29,10 +29,8 @@ run:
       https://github.com/vmware-tanzu/carvel-ytt/releases/download/v0.41.1/ytt-linux-amd64
     chmod +x /usr/local/bin/ytt
 
-    ytt template --data-value-yaml \
-      environments=$environments \
-      instance-variables/pipeline.yaml \
-      > pipeline/pipeline.yaml
+    ytt -f instance-variables/pipeline.yaml \
+      --data-value-yaml environments=$environments > pipeline/pipeline.yaml
 
     echo
     echo =================
