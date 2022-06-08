@@ -10,7 +10,7 @@ resources:
 
 jobs:
 
-#@ for/end environment in environments:
+#@ for/end environment in data.values.environments:
 - name: #@ "job-for-" + environment
   plan:
   - get: instance-variables
