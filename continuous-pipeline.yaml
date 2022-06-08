@@ -8,7 +8,7 @@ resources:
 
 jobs:
 
-- name: job
+- name: alfa-job
   plan:
   - get: instance-variables
     trigger: ((autopromote))
@@ -30,4 +30,24 @@ jobs:
         - |
           echo This is $BRANCH on $ENVIRONMENT, and it will $AUTOPROMOTE.
 
-
+- name: omicron-job
+  plan:
+  - get: instance-variables
+    trigger: ((autopromote))
+  - task: task
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          repository: ubuntu
+      params:
+        BRANCH: ((branch))
+        ENVIRONMENT: ((environment))
+        AUTOPROMOTE: ((autopromote))
+      run:
+        path: sh
+        args:
+        - -exc
+        - |
+          echo This is $BRANCH on $ENVIRONMENT, and it will $AUTOPROMOTE.

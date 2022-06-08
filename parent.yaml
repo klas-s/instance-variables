@@ -35,7 +35,7 @@ jobs:
     - var: environment
       values: [delta, quality, production]
     set_pipeline: instance-variables-test
-    file: instance-variables/pipeline.yaml
+    file: instance-variables/release-pipeline.yaml
     instance_vars:
       branch: ((.:branch.name))
       environment: ((.:environment))
@@ -47,7 +47,7 @@ jobs:
     - var: environment
       values: [alfa]
     set_pipeline: instance-variables-test
-    file: instance-variables/pipeline.yaml
+    file: instance-variables/continuous-pipeline.yaml
     vars:
       autopromote: true
     instance_vars:
