@@ -28,9 +28,9 @@ jobs:
   - get: instance-variables
   - get: release-branches
   - load_var: environments
-    file: environment-variables/continuous.json
+    file: instance-variables/continuous.json
   - task: render-pipeline
-    file: environment-variables/tasks/render-pipeline.yaml
+    file: instance-variables/tasks/render-pipeline.yaml
     params:
       environments: ((.:environments))
   - load_var: branches
