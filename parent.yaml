@@ -39,3 +39,12 @@ jobs:
     instance_vars:
       branch: ((.:branch.name))
       environment: ((.:environment))
+    - var: branch
+      values: ((.:branches))
+    - var: environment
+      values: [alfa]
+    set_pipeline: instance-variables-test
+    file: instance-variables/pipeline.yaml
+    instance_vars:
+      branch: ((.:branch.name))
+      environment: ((.:environment))
