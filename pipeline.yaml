@@ -1,41 +1,18 @@
-resource_types:
-
-- name: git-branches
-  type: registry-image
-  source:
-    repository: aoldershaw/git-branches-resource
-
-resources:
-
-- name: release-branches
-  type: git-branches
-  source:
-    uri: https://github.com/Visma-Proceedo/proceedo-web-ui.git
-    username: ((github.pat))
-    password: x-oauth-basic
-    branch_regex: 'release/(?P<release>.*)'
-
-- name: instance-variables
-  type: git
-  icon: github
-  source:
-    uri: https://github.com/klas-s/instance-variables.git
-
 jobs:
 
-- name: set-self
+- name: job
   plan:
-  - get: instance-variables
-  - get: release-branches
-  - load_var: branches
-    file: release-branches/branches.json
-  - across:
-    - var: branch
-      values: ((.:branches))
-    - var: environment
-      values: [delta, quality, production]
-    set_pipeline: self
-    file: instance-variables/pipeline.yaml
-    instance_vars:
-      branch: ((.:branch.name))
-      environment: ((.:environment))
+  - task: task
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          repository: ubuntu
+    run:
+      path: sh
+      args:
+      - exc
+      - |
+        echo hello
+
