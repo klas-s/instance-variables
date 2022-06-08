@@ -9,10 +9,10 @@ jobs:
         type: registry-image
         source:
           repository: ubuntu
-    run:
-      path: sh
-      args:
-      - exc
-      - |
-        echo hello
+      run:
+        path: sh
+        args:
+        - exc
+        - |
+          echo hello
 
